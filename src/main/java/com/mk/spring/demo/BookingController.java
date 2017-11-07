@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -23,50 +22,49 @@ public class BookingController {
 
     @Autowired
     private BookingService service;
-    @RequestMapping(value = "/book" , method = { RequestMethod.POST  })
-    public ModelAndView bookSeat(@RequestParam(value="name1", required=false) String name1,
-                                 @RequestParam(value="name2", required=false) String name2,
-                                 @RequestParam(value="name3", required=false) String name3,
-                                 @RequestParam(value="name4", required=false) String name4,
-                                 @RequestParam(value="name5", required=false) String name5,
-                                 @RequestParam(value="name6", required=false) String name6,
+
+    @RequestMapping(value = "/book", method = {RequestMethod.POST})
+    public ModelAndView bookSeat(@RequestParam(value = "name1", required = false) String name1,
+                                 @RequestParam(value = "name2", required = false) String name2,
+                                 @RequestParam(value = "name3", required = false) String name3,
+                                 @RequestParam(value = "name4", required = false) String name4,
+                                 @RequestParam(value = "name5", required = false) String name5,
+                                 @RequestParam(value = "name6", required = false) String name6,
                                  Model model) {
         List<String> names = new ArrayList<>();
-        addNameIfNotEmpty(names,name1);
-        addNameIfNotEmpty(names,name2);
-        addNameIfNotEmpty(names,name3);
-        addNameIfNotEmpty(names,name4);
-        addNameIfNotEmpty(names,name5);
-        addNameIfNotEmpty(names,name6);
-        String errorMessage=null;
+        addNameIfNotEmpty(names, name1);
+        addNameIfNotEmpty(names, name2);
+        addNameIfNotEmpty(names, name3);
+        addNameIfNotEmpty(names, name4);
+        addNameIfNotEmpty(names, name5);
+        addNameIfNotEmpty(names, name6);
+        String errorMessage = null;
         try {
             service.book(names);
-        }
-        catch (RuntimeException e){
+        } catch (RuntimeException e) {
             logger.error(e.getMessage());
 
-            if(e.getMessage().contains("Value too long for column")){
+            if (e.getMessage().contains("Value too long for column")) {
                 errorMessage = "One of the names is too long, hence booking is not made!";
-            }
-            else{
+            } else {
                 errorMessage = "Some unexpected exception occurred!";
             }
 
         }
-        return new ModelAndView("redirect:/bookedseates","errorMessage",errorMessage);
+        return new ModelAndView("redirect:/bookedseates", "errorMessage", errorMessage);
 
     }
 
-    private void addNameIfNotEmpty(List<String>list, String name) {
+    private void addNameIfNotEmpty(List<String> list, String name) {
 
-        if (!name.equals("")){
+        if (!name.equals("")) {
             list.add(name);
         }
 
     }
 
     @RequestMapping("/bookedseates")
-    public  String books(@RequestParam(value="errorMessage", required=false) String errorMessage, Model model) {
+    public String books(@RequestParam(value = "errorMessage", required = false) String errorMessage, Model model) {
         model.addAttribute("errorMessage", errorMessage);
         model.addAttribute("bookings", service.findAllBookings());
         return "booking";

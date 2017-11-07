@@ -28,6 +28,7 @@
         }
 
 
+
     </style>
 </head>
 <body>
@@ -35,7 +36,7 @@
     <nav class="navbar navbar-dark bg-dark">
         <ul class="nav justify-content-center">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Greeting</a>
+                <a class="nav-link active" href="/">Home</a>
             </li>
         </ul>
     </nav>
@@ -45,14 +46,14 @@
             <div class="row">
 
 
-            <th:block th:each="name : ${bookings}">
-                <div class="col" >
-                    <div class="card">
-                        <div class="card-body" th:text="${name} + '!'">
+                <th:block th:each="name : ${bookings}">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body" th:text="${name} + '!'">
+                            </div>
                         </div>
                     </div>
-                </div>
-            </th:block>
+                </th:block>
 
             </div>
         </div>
@@ -68,32 +69,38 @@
                         <div class="form-group row">
                             <div class="input-group">
                                 <label for="passenger1" class="col-sm-2 col-form-label">Passenger 1</label>
-                                <input type="input" class="form-control" id="passenger1" placeholder="First name of Passenger 1"
+                                <input type="input" class="form-control" id="passenger1"
+                                       placeholder="First name of Passenger 1"
                                        name="name1" aria-label="name1"/>
                             </div>
                             <div class="input-group">
                                 <label for="passenger2" class="col-sm-2 col-form-label">Passenger 2</label>
-                                <input type="input" class="form-control" id="passenger2" placeholder="First name of Passenger 2"
+                                <input type="input" class="form-control" id="passenger2"
+                                       placeholder="First name of Passenger 2"
                                        name="name2" aria-label="name1"/>
                             </div>
                             <div class="input-group">
                                 <label for="passenger3" class="col-sm-2 col-form-label">Passenger 3</label>
-                                <input type="input" class="form-control" id="passenger3" placeholder="First name of Passenger 3"
+                                <input type="input" class="form-control" id="passenger3"
+                                       placeholder="First name of Passenger 3"
                                        name="name3" aria-label="name1"/>
                             </div>
                             <div class="input-group">
                                 <label for="passenger4" class="col-sm-2 col-form-label">Passenger 4</label>
-                                <input type="input" class="form-control" id="passenger4" placeholder="First name of Passenger 4"
+                                <input type="input" class="form-control" id="passenger4"
+                                       placeholder="First name of Passenger 4"
                                        name="name4" aria-label="name1"/>
                             </div>
                             <div class="input-group">
                                 <label for="passenger5" class="col-sm-2 col-form-label">Passenger 5</label>
-                                <input type="input" class="form-control" id="passenger5" placeholder="First name of Passenger 5"
+                                <input type="input" class="form-control" id="passenger5"
+                                       placeholder="First name of Passenger 5"
                                        name="name5" aria-label="name1"/>
                             </div>
                             <div class="input-group">
                                 <label for="passenger6" class="col-sm-2 col-form-label">Passenger 6</label>
-                                <input type="input" class="form-control" id="passenger6" placeholder="First name of Passenger 6"
+                                <input type="input" class="form-control" id="passenger6"
+                                       placeholder="First name of Passenger 6"
                                        name="name6" aria-label="name1"/>
                             </div>
                         </div>

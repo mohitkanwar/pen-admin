@@ -1,0 +1,29 @@
+#%RAML 1.0
+title: User API
+description: API for dealing with a single user. Create, update delete etc.
+version: v1
+baseUri: http://mohitkanwar.com/pen/
+protocols: [ HTTP, HTTPS ]
+mediaType:  application/json
+types:
+  user:
+    type: object
+    properties:
+      firstname:
+        required: true
+        type: string
+      lastname:
+        required: true
+        type: string
+      email:
+        required: true
+        type: string
+      password:
+        required: true
+        type: string
+      birthdate:
+        required: true
+        type: date-only
+
+securitySchemes:
+  oauth_2_0: !include ../../securitySchemes/oauth_2_0.raml

@@ -1,5 +1,7 @@
 package com.mk.spring.demo;
 
+import com.mk.pen.user.User;
+import com.mk.pen.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -15,9 +17,10 @@ class AppRunner implements CommandLineRunner {
     private final static Logger logger = LoggerFactory.getLogger(AppRunner.class);
 
     private final BookingService bookingService;
-
-    public AppRunner(BookingService bookingService) {
+    private final UserService userService;
+    public AppRunner(BookingService bookingService,UserService userService) {
         this.bookingService = bookingService;
+        this.userService = userService;
     }
 
     @Override
@@ -27,6 +30,11 @@ class AppRunner implements CommandLineRunner {
         test1.add("Bob");
         test1.add("Carol");
         bookingService.book(test1);
+
+        User user1 = new User(0,"Mohit", "Kanwar");
+        User user2 = new User(0,"Shama", "Kanwar");
+        userService.createUser(user1);
+        userService.createUser(user2);
         Assert.isTrue(bookingService.findAllBookings().size() == 3,
                 "First booking should work with no problem");
         logger.info("Alice, Bob and Carol have been booked");
